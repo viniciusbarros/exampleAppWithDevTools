@@ -1,0 +1,45 @@
+{
+    "name": "vinicius/app-example",
+    "description": "Example of PHP applications with useful dev tools",
+    "require": {
+        "php": ">7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5",
+        "squizlabs/php_codesniffer": "^3.2",
+        "phploc/phploc": "^4.0",
+        "phpmd/phpmd": "^2.6",
+        "pdepend/pdepend": "^2.5",
+        "sebastian/phpcpd": "^3.0",
+        "covex-nn/phpcb": "1.0.4.1",
+        "theseer/phpdox": "^0.11.0"
+    },
+    "autoload":{
+        "psr-4": {
+            "AppExample\\": "src/"
+        }
+    },
+    "scripts":{
+        "mess-detector": [
+            "./vendor/phpmd/phpmd/src/bin/phpmd ./src html codesize,unusedcode,naming,controversial  --reportfile \"./build-results/mess-detector.html\""
+        ],
+        "duplicated-lines":[
+            "./vendor/sebastian/phpcpd/phpcpd ./src/"
+        ],
+        "code-sniffer":[
+            "./vendor/squizlabs/php_codesniffer/bin/phpcs ./src --report=checkstyle --report-file=./build-results/php-code-sniffer.xml"
+        ],
+        "get-statistics":[
+            "./vendor/phploc/phploc/phploc ./src > ./build-results/statistics.txt"
+        ],
+        "check-instability":[
+            "./vendor/pdepend/pdepend/src/bin/pdepend --summary-xml=./build-results/pdepend-summary.xml  --jdepend-chart=./build-results/pdepend-chart.svg --overview-pyramid=./build-results/pdepend-pyramid.svg ./src"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Vinicius Barros",
+            "email": "vmbarross@gmail.com"
+        }
+    ]
+}
